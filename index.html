@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>成人 ADHD 自测 – ASRS v1.1 筛查量表</title>
+    <meta name="description" content="基于 WHO 与哈佛医学院共同开发的成人 ADHD 自评量表（ASRS v1.1），18 题循证筛查，快速了解您的注意力与多动倾向。" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- ===== MILESTONE TOAST (floating) ===== -->
+    <div class="milestone-toast" id="milestone-toast">
+        <span class="milestone-emoji" id="milestone-emoji">🎉</span>
+        <span class="milestone-text" id="milestone-text">加油！</span>
+    </div>
+
+    <!-- ===== HEADER ===== -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="logo" id="logo-home">
+                <span class="logo-icon">🧠</span>
+                <span class="logo-text">ADHD<span class="logo-accent">评估</span></span>
+            </div>
+            <div class="header-right">
+                <nav class="nav-links">
+                    <a href="#about">关于测试</a>
+                </nav>
+                <!-- Theme Toggle -->
+                <button class="theme-toggle" id="theme-toggle" aria-label="切换主题">
+                    <span class="theme-icon-dark">🌙</span>
+                    <span class="theme-icon-light">☀️</span>
+                    <span class="toggle-track"><span class="toggle-thumb"></span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== HERO / LANDING ===== -->
+    <section class="hero" id="hero">
+        <div class="container hero-inner">
+
+            <!-- Resume Banner -->
+            <div class="resume-banner" id="resume-banner" style="display:none;">
+                <div class="resume-banner-left">
+                    <span class="resume-icon">📌</span>
+                    <div>
+                        <div class="resume-title">发现上次未完成的测试</div>
+                        <div class="resume-desc" id="resume-desc">已完成 0 题，是否继续？</div>
+                    </div>
+                </div>
+                <div class="resume-actions">
+                    <button class="btn-resume-continue" id="resume-continue-btn">继续作答</button>
+                    <button class="btn-resume-new" id="resume-new-btn">重新开始</button>
+                </div>
+            </div>
+
+            <div class="hero-badge">WHO × 哈佛医学院</div>
+            <h1 class="hero-title">成人 ADHD 筛查测试<br /><span class="hero-sub">ASRS v1.1</span></h1>
+            <p class="hero-desc">
+                基于世界卫生组织（WHO）与哈佛医学院共同开发的循证评估工具，18 道题帮助您初步了解自己的注意力与多动状况。
+            </p>
+            <div class="hero-stats">
+                <div class="stat"><span class="stat-num">18</span><span class="stat-label">核心题目</span></div>
+                <div class="stat-divider"></div>
+                <div class="stat"><span class="stat-num">3 分钟</span><span class="stat-label">快速完成</span></div>
+                <div class="stat-divider"></div>
+                <div class="stat"><span class="stat-num">91.4%</span><span class="stat-label">筛查敏感度</span></div>
+            </div>
+            <button class="btn-primary" id="start-btn">
+                <span>立即开始测试</span>
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+            </button>
+            <p class="hero-hint">完全匿名 · 数据仅存本地 · 支持进度保存</p>
+        </div>
+        <div class="hero-bg-circles">
+            <div class="circle c1"></div>
+            <div class="circle c2"></div>
+            <div class="circle c3"></div>
+        </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <h2 class="section-title">了解成人 ADHD</h2>
+            <div class="about-grid">
+                <div class="about-card">
+                    <div class="about-icon">🎯</div>
+                    <h3>注意力困难</h3>
+                    <ul>
+                        <li>难以持续专注于任务或对话</li>
+                        <li>在工作或生活中犯粗心错误</li>
+                        <li>难以组织和安排任务活动</li>
+                        <li>容易受外部刺激干扰</li>
+                        <li>频繁丢失钥匙、手机等物品</li>
+                    </ul>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">⚡</div>
+                    <h3>多动与冲动</h3>
+                    <ul>
+                        <li>感到坐立不安或烦躁</li>
+                        <li>难以在座位上长时间安静</li>
+                        <li>过度说话或打断他人</li>
+                        <li>难以耐心等待</li>
+                        <li>未经深思熟虑便行动</li>
+                    </ul>
+                </div>
+                <div class="about-card">
+                    <div class="about-icon">📋</div>
+                    <h3>关于 ASRS v1.1</h3>
+                    <ul>
+                        <li>18 题分 A、B 两部分</li>
+                        <li>A 部分（6 题）为核心筛查</li>
+                        <li>B 部分（12 题）为补充评估</li>
+                        <li>考察过去 6 个月的真实体验</li>
+                        <li>筛查工具，非诊断工具</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="about-cta">
+                <button class="btn-primary" id="start-btn-2">
+                    <span>开始测试</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== QUIZ ENGINE ===== -->
+    <section class="quiz-section" id="quiz-section" style="display:none;">
+        <div class="container quiz-container">
+
+            <!-- Header of quiz -->
+            <div class="quiz-topbar">
+                <button class="btn-back" id="back-btn" aria-label="返回首页">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 12H5M12 19l-7-7 7-7" />
+                    </svg>
+                    返回
+                </button>
+                <div class="quiz-part-label" id="quiz-part-label">A 部分 · 核心筛查</div>
+                <div class="quiz-counter" id="quiz-counter">1 / 18</div>
+            </div>
+
+            <!-- Progress bar -->
+            <div class="quiz-progress-wrap">
+                <div class="quiz-progress-track">
+                    <div class="quiz-progress-bar" id="quiz-progress-bar"></div>
+                </div>
+                <div class="quiz-progress-dots" id="quiz-progress-dots"></div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="quiz-card-wrap" id="quiz-card-wrap">
+                <div class="quiz-card" id="quiz-card">
+                    <div class="quiz-q-meta">
+                        <span class="quiz-q-num" id="quiz-q-num">01</span>
+                        <span class="quiz-q-tag" id="quiz-q-tag">注意力</span>
+                    </div>
+                    <p class="quiz-q-text" id="quiz-q-text">题目加载中…</p>
+                    <p class="quiz-q-hint">请根据过去 <strong>6 个月</strong>的真实频率作答</p>
+                    <div class="quiz-options" id="quiz-options">
+                        <!-- Rendered by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation buttons -->
+            <div class="quiz-nav">
+                <button class="btn-quiz-nav btn-prev" id="prev-btn" disabled>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 12H5M12 19l-7-7 7-7" />
+                    </svg>
+                    上一题
+                </button>
+                <button class="btn-quiz-nav btn-next" id="next-btn">
+                    下一题
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Keyboard hint -->
+            <div class="quiz-footer-hints">
+                <div class="keyboard-hint">
+                    <span class="kbd">1</span>–<span class="kbd">5</span> 键选择 &nbsp;
+                    <span class="kbd">←</span><span class="kbd">→</span> 切换题目
+                </div>
+                <p class="quiz-skip-hint">选择答案后自动前进</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== RESULT SECTION ===== -->
+    <section class="result-section" id="result-section" style="display:none;">
+        <div class="container">
+
+            <!-- Score Hero -->
+            <div class="result-hero">
+                <div class="result-ring-wrap">
+                    <svg class="result-ring" viewBox="0 0 200 200" id="result-ring-svg">
+                        <circle class="ring-bg" cx="100" cy="100" r="80" />
+                        <circle class="ring-fill" id="ring-fill" cx="100" cy="100" r="80" />
+                    </svg>
+                    <div class="result-ring-inner">
+                        <div class="result-score-num" id="result-score-num">—</div>
+                        <div class="result-score-label">综合评分</div>
+                    </div>
+                </div>
+                <div class="result-hero-text">
+                    <div class="result-level-badge" id="result-level-badge">计算中…</div>
+                    <h2 class="result-title" id="result-title">测试完成</h2>
+                    <p class="result-subtitle" id="result-subtitle"></p>
+                    <!-- Timer -->
+                    <div class="timer-stat" id="timer-stat" style="display:none;">
+                        <span>⏱️</span> <span id="timer-text">—</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sub Scores -->
+            <div class="sub-scores">
+                <div class="sub-score-card">
+                    <div class="sub-score-icon">🎯</div>
+                    <div class="sub-score-info">
+                        <div class="sub-score-label">A 部分（核心筛查）</div>
+                        <div class="sub-score-bar-wrap">
+                            <div class="sub-score-bar" id="bar-a"></div>
+                        </div>
+                    </div>
+                    <div class="sub-score-num" id="num-a">—</div>
+                </div>
+                <div class="sub-score-card">
+                    <div class="sub-score-icon">⚡</div>
+                    <div class="sub-score-info">
+                        <div class="sub-score-label">B 部分（辅助评估）</div>
+                        <div class="sub-score-bar-wrap">
+                            <div class="sub-score-bar sub-score-bar-b" id="bar-b"></div>
+                        </div>
+                    </div>
+                    <div class="sub-score-num" id="num-b">—</div>
+                </div>
+            </div>
+
+            <!-- ASRS Screening Result -->
+            <div class="asrs-badge" id="asrs-badge"></div>
+
+            <!-- Severity Meter -->
+            <div class="severity-section">
+                <h3 class="result-section-title">ADHD 症状程度</h3>
+                <div class="severity-meter">
+                    <div class="severity-track">
+                        <div class="severity-fill" id="severity-fill"></div>
+                        <div class="severity-pointer" id="severity-pointer"></div>
+                    </div>
+                    <div class="severity-labels">
+                        <span>极低</span><span>轻微</span><span>中度</span><span>明显</span><span>显著</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Radar Chart -->
+            <div class="radar-section">
+                <h3 class="result-section-title">症状维度分析</h3>
+                <p class="radar-subtitle">各维度分数越高，表示该方面症状越明显</p>
+                <div class="radar-wrap">
+                    <canvas id="radar-chart" width="300" height="280"></canvas>
+                    <div class="radar-legend">
+                        <div class="legend-item"><span class="legend-dot" style="background:#8264ff"></span>注意力集中</div>
+                        <div class="legend-item"><span class="legend-dot" style="background:#4fa8ff"></span>组织管理</div>
+                        <div class="legend-item"><span class="legend-dot" style="background:#22d3a5"></span>多动倾向</div>
+                        <div class="legend-item"><span class="legend-dot" style="background:#f5c842"></span>冲动控制</div>
+                        <div class="legend-item"><span class="legend-dot" style="background:#ff7e50"></span>情绪调节</div>
+                    </div>
+                </div>
+                <!-- Dimension cards -->
+                <div class="dim-cards" id="dim-cards"></div>
+            </div>
+
+            <!-- Solutions -->
+            <div class="solutions-section" id="solutions-section">
+                <h3 class="result-section-title">科学应对方案</h3>
+                <p class="solutions-intro" id="solutions-intro"></p>
+                <div class="solutions-grid" id="solutions-grid">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+
+            <!-- Disclaimer -->
+            <div class="result-disclaimer">
+                <span class="disclaimer-icon">⚠️</span>
+                <div>
+                    <strong>重要提示：</strong>本测试为筛查工具，不能替代专业诊断。若测试结果显示症状明显，建议咨询精神科医生或心理健康专业人士进行正式评估。
+                </div>
+            </div>
+
+            <!-- Retry -->
+            <div class="result-actions">
+                <button class="btn-retry" id="retry-btn">🔄 重新测试</button>
+                <button class="btn-primary" id="share-btn">
+                    <span>📋 复制结果摘要</span>
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <span class="logo-icon">🧠</span>
+                <span class="logo-text">ADHD<span class="logo-accent">评估</span></span>
+            </div>
+            <p class="footer-note">
+                本测试基于 WHO × 哈佛医学院 ASRS v1.1 量表，仅供参考。<br />
+                测试结果不构成医疗诊断，请勿单独作为诊断依据。
+            </p>
+            <p class="footer-copy">© 2024 ADHD 自评测试 · 数据不会上传或储存</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
