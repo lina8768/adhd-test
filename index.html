@@ -64,6 +64,9 @@
 
             <div class="hero-badge">WHO × 哈佛医学院</div>
             <h1 class="hero-title">成人 ADHD 筛查测试<br /><span class="hero-sub">ASRS v1.1</span></h1>
+            <div
+                style="text-align: center; margin-top: -10px; margin-bottom: 20px; font-size: 14px; color: var(--text-sec); opacity: 0.8; font-weight: 500;">
+                by ADHD研究所</div>
             <p class="hero-desc">
                 基于世界卫生组织（WHO）与哈佛医学院共同开发的循证评估工具，18 道题帮助您初步了解自己的注意力与多动状况。
             </p>
@@ -320,6 +323,9 @@
                 <button class="btn-primary" id="share-btn">
                     <span>📋 复制结果摘要</span>
                 </button>
+                <button class="btn-primary" id="pdf-btn" style="background:#22d3a5;">
+                    <span>📄 保存为PDF</span>
+                </button>
             </div>
 
         </div>
@@ -339,6 +345,32 @@
             <p class="footer-copy">© 2024 ADHD 自评测试 · 数据不会上传或储存</p>
         </div>
     </footer>
+
+    <!-- ===== ACCESS CODE MODAL ===== -->
+    <div id="access-code-modal"
+        style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999; justify-content:center; align-items:center; backdrop-filter:blur(5px); -webkit-backdrop-filter:blur(5px);">
+        <div
+            style="background:var(--card-bg, #fff); padding:32px 24px; border-radius:20px; width:90%; max-width:380px; text-align:center; box-shadow:0 24px 48px rgba(0,0,0,0.2); border:1px solid var(--border-color, #eee);">
+            <div style="font-size:40px; margin-bottom:12px;">🔒</div>
+            <h3 style="margin:0 0 10px 0; color:var(--text-main, #333); font-size:20px;">请输入兑换码</h3>
+            <p style="color:var(--text-sec, #666); font-size:14px; margin:0 0 24px 0; line-height:1.5;">
+                目前仅限邀请测试<br />请输入 6 位字符口令以解锁测试</p>
+
+            <input type="text" id="access-code-input"
+                style="width:100%; box-sizing:border-box; padding:14px; border:2px solid var(--border-color, #eee); border-radius:12px; background:var(--bg-main, #f9f9f9); color:var(--text-main, #333); font-size:18px; text-align:center; margin-bottom:12px; text-transform:uppercase; transition:border-color 0.3s; outline:none;"
+                maxlength="6" />
+
+            <div id="access-code-error"
+                style="color:#ff4d4f; font-size:13px; margin:0 0 16px 0; display:none; height:18px;">兑换码无效，请重新输入</div>
+
+            <div style="display:flex; gap:12px;">
+                <button id="access-code-cancel"
+                    style="flex:1; padding:14px; border:none; border-radius:12px; background:var(--bg-sec, #f0f0f0); color:var(--text-sec, #666); cursor:pointer; font-size:15px; font-weight:500; transition:opacity 0.2s;">取消</button>
+                <button id="access-code-confirm"
+                    style="flex:1; padding:14px; border:none; border-radius:12px; background:var(--primary, #8264ff); color:#fff; cursor:pointer; font-size:15px; font-weight:600; transition:transform 0.2s, opacity 0.2s;">验证并开始</button>
+            </div>
+        </div>
+    </div>
 
     <script src="app.js"></script>
 </body>

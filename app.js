@@ -423,8 +423,35 @@
   }
 
   // Buttons
-  document.getElementById('start-btn').addEventListener('click', showQuiz);
-  document.getElementById('start-btn-2').addEventListener('click', showQuiz);
+  const ACCESS_CODE = "E8T2M9";
+
+  function handleStartClick() {
+    document.getElementById('access-code-modal').style.display = 'flex';
+    document.getElementById('access-code-input').value = '';
+    document.getElementById('access-code-error').style.display = 'none';
+    setTimeout(() => document.getElementById('access-code-input').focus(), 50);
+  }
+
+  function verifyAccessCode() {
+    const input = document.getElementById('access-code-input').value.trim().toUpperCase();
+    if (input === ACCESS_CODE) {
+      document.getElementById('access-code-modal').style.display = 'none';
+      showQuiz();
+    } else {
+      document.getElementById('access-code-error').style.display = 'block';
+    }
+  }
+
+  document.getElementById('access-code-cancel').addEventListener('click', () => {
+    document.getElementById('access-code-modal').style.display = 'none';
+  });
+  document.getElementById('access-code-confirm').addEventListener('click', verifyAccessCode);
+  document.getElementById('access-code-input').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') verifyAccessCode();
+  });
+
+  document.getElementById('start-btn').addEventListener('click', handleStartClick);
+  document.getElementById('start-btn-2').addEventListener('click', handleStartClick);
   document.getElementById('back-btn').addEventListener('click', showHero);
   document.getElementById('logo-home').addEventListener('click', showHero);
 
@@ -711,6 +738,11 @@
     document.getElementById('solutions-intro').textContent = getSolutionsIntro(level);
     renderSolutions(SOLUTIONS_DB[level] || SOLUTIONS_DB['mild']);
   }
+
+  // --- Initialize Event Listeners for Result page extra actions
+  document.getElementById('pdf-btn').addEventListener('click', () => {
+    window.print();
+  });
 
   /* ═══════════════════════════════════════
      FEATURE 8 · Radar Chart (animated Canvas 2D)

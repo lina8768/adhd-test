@@ -1846,3 +1846,63 @@ ul {
   opacity: 0.75;
   text-decoration: underline;
 }
+
+/* ===========================
+   PRINT / PDF EXPORT (A4 optimized)
+   =========================== */
+@media print {
+  @page {
+    margin: 1.5cm;
+    size: auto;
+  }
+  
+  body, .result-section, .site-footer {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  .site-header, .btn-back, .quiz-nav, #resume-banner, #hero, .theme-toggle, .result-actions {
+    display: none !important;
+  }
+  
+  .result-hero {
+    box-shadow: none !important;
+    border: 1px solid #ddd !important;
+    break-inside: avoid;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    padding: 20px !important;
+  }
+  
+  .severity-section, .radar-section, .sub-score-card {
+    break-inside: avoid;
+    box-shadow: none !important;
+    border: 1px solid #ddd !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .solution-card {
+    break-inside: avoid;
+    box-shadow: none !important;
+    border: 1px solid #ddd !important;
+  }
+
+  .solution-body {
+    max-height: none !important;
+  }
+  
+  .severity-track {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  
+  .radar-wrap canvas {
+    max-width: 100%;
+  }
+  
+  .site-footer {
+    border-top: 1px solid #ddd;
+    color: #666 !important;
+  }
+}
